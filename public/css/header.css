@@ -1,0 +1,37 @@
+
+
+.nav-bar{
+    display: flex;
+    width: 126%;
+    height: 60px;
+    background-color:white;
+    box-shadow: 0px  0px  #ddd;
+    
+}
+.back-icon {
+    font-size: 36px;
+    margin-left: 20px;
+    cursor:pointer;
+}
+.title {
+    font-size: 30px;
+    font-family: 'Monospace', Rockwell;
+    font-weight: 700;
+    color:rgb(70, 180, 79);
+    padding: 10px;
+    
+}
+.sub-title {
+    font-size: 18px;
+    font-family: 'Monospace', Rockwell;
+    padding: 10px;
+    padding-top: 22px;
+    color: #757575;
+}
+.file-name {
+
+    margin-left:10%;
+    padding: 17px;
+    font-size: 19px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

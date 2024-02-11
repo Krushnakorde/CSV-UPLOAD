@@ -1,0 +1,68 @@
+<!-- local css for body -->
+<link rel="stylesheet" type="text/css" href="./css/home.css">
+<!-- local css for header -->
+<link rel="stylesheet" type="text/css" href="./css/header.css">
+
+
+<!-- header -->
+<div class="nav-bar">
+    <a href="" class="back-icon" style="visibility: hidden;">
+        <i class="fa-solid fa-circle-arrow-left" style="color: #b8b8b8;"></i>
+    </a>   
+    <div class="title">
+        CSV Upload
+    </div>
+</div>
+
+<!-- upload -->
+<div ">
+    <!-- main text -->
+    <div class="center-text mb-5">
+        <h1>Upload a File Here</h1>
+        
+    </div>
+
+    <!-- upload box -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="input-container" style=" background-color: aqua;">
+            <input type="file" id="csvFile" name="file" accept=".csv" required>
+            <button class="upload-btn">Upload</button>
+        </div>
+    </form>
+</div>
+
+<!-- show uploaded files -->
+<div class="files-list" style="margin-bottom: 50px; margin:30px">  
+    <div class="list-center-text">
+        <h2>Uploaded files</h2>
+    </div>
+
+    <% if(files.length==0) { %>
+        <div class="no-file">No files to show!</div>
+    <% } else { %>
+       <table>
+            <thead>
+                <tr ">
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time </th>
+                <th>View</th>
+                <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div class="container" ">
+                <% for(file of files) { %>
+                    <tr>
+                     <td><%= file.filename %></td>
+                        <td><%= file.time.toLocaleDateString() %></td>
+                        <td><%= file.time.toLocaleTimeString() %></td>
+                        <td><a href="/view/<%= file._id %>?page=1&limit=100" class="view-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                        <td><a href="/delete/<%= file._id%>" class="delete-link"><i class="fa-regular fa-trash-can " style="color: #f00;"></i></a></td>
+                    </tr>
+                    <% } %>
+                </div>
+            </tbody>
+        </table>
+    <% } %>
+</div>

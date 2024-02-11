@@ -1,0 +1,106 @@
+<!-- local css for body -->
+<link rel="stylesheet" type="text/css" href="../css/file.css">
+<!-- local css for header -->
+<link rel="stylesheet" type="text/css" href="../css/header.css">
+
+<!-- header -->
+
+<div class="nav-bar"  style="position:sticky; left:0px;top:0px " >
+    <a href="/" class="back-icon">
+        <i class="fa-solid fa-circle-arrow-left" style="color: #b8b8b8;"></i>
+    </a>    
+    <div class="title">
+        CSV Upload
+    </div>
+    <div class="sub-title">
+        Viewer
+    </div>
+
+
+
+    <!-- search bar -->
+
+    <div class="search-bar" style=>
+        <form id="searchForm">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search data...">
+                <button id="go" class="search-btn" type="button">Go</button>
+            </div>
+        </form>
+        <div>
+            <p id="total-rows">Total Rows: <%=length%></p>
+        </div>
+    </div>
+    <div class="file-name">
+        <%= fileName %>
+    </div>
+
+
+   
+
+</div>
+
+<div style="width:125%; border:2px solid black; margin:2px">
+
+
+<!-- search results -->
+<div>
+    <table>
+        <thead style="position: sticky;top:11%">
+            <tr>
+            <% for(let h of head) { %>
+                <th ><%= h %></th>
+            <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let row of data) { %>
+            <tr>
+                <% for(let key of Object.keys(row)) { %>
+                    <td><%= row[key] %></td>
+                <% } %>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+
+
+<nav aria-label="Page navigation example" style="position: relative;left:37%; ">
+    <ul class="pagination">
+
+        <% if(results.previous){%>
+      <li class="page-item">
+        <a class="page-link" href="/view/<%= id %>?page=<%=results.previous.page%>&limit=<%=results.previous.limit%>" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+        <%} else{%>
+            <li class="page-item disabled" >
+                <a class="page-link disabled" aria-label="Previous"  disa>
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+
+       <%}%>
+
+      <li class="page-item"><a class="page-link active" href="/view/<%= id %>?page=<%=results.current.page%>&limit=<%=results.current.limit%>"><%=results.current.page%></a></li>
+      
+      <% if(results.next){ %>
+      <li class="page-item">
+        <a class="page-link" href="/view/<%= id %>?page=<%=results.next.page%>&limit=<%=results.next.limit%>" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <% } else{%>
+        <li class="page-item disabled" >
+            <a class="page-link"  aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+      <%} %>
+    </ul>
+  </nav>
+
+</div>
